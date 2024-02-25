@@ -14,7 +14,7 @@ const Addition = () => {
     setFrontendResult(result);
 
     try {
-      const response = await axios.post('http://localhost:4001/add', { num1, num2 });
+      const response = await axios.post('http://ec2-3-22-83-104.us-east-2.compute.amazonaws.com:6000/add', { num1, num2 });
       setBackendResult(response.data.result);
     } catch (error) {
       console.error('Error occurred:', error);
@@ -41,8 +41,8 @@ const Addition = () => {
       </div>
       <div className="row mt-4">
         <div className="col-md-6">
-          <p><strong>Your Addition Result from(ReactJs) is:</strong> {frontendResult}</p>
-          <p><strong>Your Addition Result from(Server) is:</strong> {backendResult}</p>
+          <p><strong> Addition Result from(ReactJs) is:</strong> {frontendResult}</p>
+          <p><strong> Addition Result from(Server) is:</strong> {backendResult}</p>
         </div>
       </div>
     </div>
