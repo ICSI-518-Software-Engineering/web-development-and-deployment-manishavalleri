@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
+const host=process.env.HOSTNAME ||'http://ec2-35-168-10-119.compute-1.amazonaws.com';
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
