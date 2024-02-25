@@ -14,7 +14,7 @@ const Addition = () => {
     setFrontendResult(result);
 
     try {
-      const response = await axios.post('http://ec2-3-16-138-21.us-east-2.compute.amazonaws.com:6000/add', { num1, num2 });
+      const response = await axios.post('http://ec2-3-16-138-21.us-east-2.compute.amazonaws.com:3000/add', { num1, num2 });
       setBackendResult(response.data.result);
     } catch (error) {
       console.error('Error occurred:', error);
