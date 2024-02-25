@@ -1,15 +1,15 @@
 const express = require('express');
-const cors = require('cors'); // Import the cors middleware
-const app = express();
-const host=process.env.HOSTNAME || 'http://ec2-3-16-138-21.us-east-2.compute.amazonaws.com/';
-const PORT = process.env.PORT || 6000;
+const cors = require('cors');
 const path = require('path');
-app.use(express.static(path.join(__dirname, 'Public')));
+
+const app = express();
+const PORT = process.env.PORT || 6000;
 
 app.use(express.json());
-
-// Use the cors middleware
 app.use(cors());
+
+// Serve static files from the 'Public' folder
+app.use(express.static(path.join(__dirname, 'Public')));
 
 // API endpoint for addition
 app.post('/add', (req, res) => {
@@ -18,4 +18,4 @@ app.post('/add', (req, res) => {
   res.json({ result: sum });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(Server running on port ${PORT}));
