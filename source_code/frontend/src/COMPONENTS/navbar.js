@@ -26,6 +26,16 @@ const Navbar = () => {
                 Addition
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/third-party">
+                Third Party API
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/inventory">
+                Inventory Management
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
