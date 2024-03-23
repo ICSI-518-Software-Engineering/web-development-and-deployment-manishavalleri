@@ -13,7 +13,7 @@ const UpdateItemForm = ({ id, name: initialName, quantity: initialQuantity, onUp
       toast.success('Item updated successfully');
       
       setTimeout(async () => {
-        const response = await axios.put(`http://localhost:3002/api/inventory/${id}`, { name, quantity });
+        const response = await axios.put(`http://ec2-54-196-18-187.compute-1.amazonaws.com:3002/api/inventory/${id}`, { name, quantity });
         console.log('Item updated successfully');
         onUpdate(response.data);
         setTimeout(() => {

@@ -29,14 +29,14 @@ const AddItemForm = ({ onAdd }) => {
       formData.append('name', name);
       formData.append('quantity', quantity);
 
-      await axios.post('http://localhost:3002/api/upload', formData, {
+      await axios.post('http://ec2-54-196-18-187.compute-1.amazonaws.com:3002/api/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
 
-      const imageURL = `http://localhost:3002/uploads/${image.name}`;
-      const response = await axios.post('http://localhost:3002/api/inventory', { name, quantity, imageURL });
+      const imageURL = `http://ec2-54-196-18-187.compute-1.amazonaws.com:3002/uploads/${image.name}`;
+      const response = await axios.post('http://ec2-54-196-18-187.compute-1.amazonaws.com:3002/api/inventory', { name, quantity, imageURL });
       onAdd(response.data);
       setName('');
       setQuantity('');
