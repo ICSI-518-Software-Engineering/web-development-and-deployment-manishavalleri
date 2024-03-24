@@ -26,7 +26,7 @@ const InventoryList = () => {
 
   const handleUpdate = async (updatedItem) => {
     try {
-      const response = await axios.put(`http://ec2-3-84-142-237.compute-1.amazonaws.com:3002/api/inventory/${updatedItem._id}`, updatedItem);
+      const response = await axios.put(`http://3.86.66.126:3002/api/inventory/${updatedItem._id}`, updatedItem);
       const updatedItems = inventoryItems.map((item) =>
         item._id === updatedItem._id ? updatedItem : item
       );
@@ -44,7 +44,7 @@ const InventoryList = () => {
     try {
       toast.success('Item Deleted Successfully');
     
-      await axios.delete(`http://ec2-3-84-142-237.compute-1.amazonaws.com:3002/api/inventory/${id}`);
+      await axios.delete(`http://3.86.66.126:3002/api/inventory/${id}`);
       const filteredItems = inventoryItems.filter((item) => item._id !== id);
       setInventoryItems(filteredItems);
       console.log('Deleting item...');
