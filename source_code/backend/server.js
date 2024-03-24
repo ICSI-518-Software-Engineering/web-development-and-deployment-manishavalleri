@@ -57,7 +57,7 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
     }
 
     const imagePath = req.file.path; // Path where the image is saved
-    const imageURL = `http://ec2-54-196-18-187.compute-1.amazonaws.com:3002/${imagePath}`;
+    const imageURL = `http://ec2-3-84-142-237.compute-1.amazonaws.com:3002/${imagePath}`;
     res.json({ imageURL }); // Respond with the URL of the uploaded image
   } catch (error) {
     console.error('Error uploading image:', error);
