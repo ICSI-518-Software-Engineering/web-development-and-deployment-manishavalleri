@@ -5,7 +5,10 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 
 const app = express();
+const host=process.env.HOSTNAME ||'http://ec2-3-84-142-237.compute-1.amazonaws.com';
 const PORT = process.env.PORT || 3002; 
+
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // MongoDB connection
 mongoose.connect('mongodb+srv://Manisha:Malbany23$@cluster0.avzcwe1.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
