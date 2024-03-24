@@ -12,7 +12,7 @@ const InventoryList = () => {
   useEffect(() => {
     const fetchInventoryItems = async () => {
       try {
-        const response = await axios.get('http://ec2-3-84-142-237.compute-1.amazonaws.com:3002/api/inventory');
+        const response = await axios.get('http://3.86.66.126:3002/api/inventory');
         setInventoryItems(response.data);
       } catch (error) {
         console.error('Error fetching inventory items:', error);
