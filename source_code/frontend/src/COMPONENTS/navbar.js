@@ -4,8 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleNavigate = (path) => {
-    navigate(path);
+  // Function to handle logout
+  const handleLogout = () => {
+    // Clear token from local storage
+    localStorage.removeItem('token');
+    // Redirect to login page
+    navigate('/login');
   };
 
   return (
@@ -18,7 +22,12 @@ const Navbar = () => {
           <ul className="navbar-nav">
             <li className="nav-item">
               <Link className="nav-link" to="/profile">
-                Profile
+                Default Profile
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/user">
+                User Profile
               </Link>
             </li>
             <li className="nav-item">
@@ -36,6 +45,28 @@ const Navbar = () => {
                 Inventory Management
               </Link>
             </li>
+            {localStorage.getItem('token') ? (
+              // If token is present, display logout link
+              <li className="nav-item">
+                <button className="nav-link btn btn-link" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+            ) : (
+              // If token is not present, display sign up and sign in links
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/signup">
+                    Sign up
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/login">
+                    Sign in
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
