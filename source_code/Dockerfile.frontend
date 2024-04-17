@@ -1,0 +1,20 @@
+# Dockerfile for frontend
+FROM node:16
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY frontend/package*.json ./
+
+# Install dependencies
+RUN npm install --verbose
+
+# Copy local code to the container
+COPY frontend/ .
+
+# Expose port for development
+EXPOSE 3000
+
+# Command to run the app
+CMD ["npm", "start"]
