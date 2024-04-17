@@ -1,0 +1,5 @@
+# Dockerfile for Caddy
+FROM caddy:2-alpine
+
+# Copy Caddyfile
+COPY Caddyfile /etc/caddy/Caddyfile
