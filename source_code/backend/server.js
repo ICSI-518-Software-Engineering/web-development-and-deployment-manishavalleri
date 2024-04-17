@@ -3,6 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const bodyParser = require("body-parser");
 
 const app = express();
 const host=process.env.HOSTNAME ||'http://ec2-3-84-142-237.compute-1.amazonaws.com';
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3002;
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // MongoDB connection
+//mongodb+srv://Manisha:Malbany23$@cluster0.avzcwe1.mongodb.net/?retryWrites=true&w=majority
 mongoose.connect('mongodb+srv://Manisha:Malbany23$@cluster0.avzcwe1.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.error('MongoDB connection error:', err));
@@ -31,6 +33,15 @@ const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(cors());
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+
+var usersRouter = require('./routes/users');
+
+app.use('/users', usersRouter);
+
+
+
 // Define inventory item schema
 const inventorySchema = new mongoose.Schema({
   name: String,
@@ -49,6 +60,27 @@ app.post('/api/inventory', async (req, res) => {
   } catch (error) {
     console.error('Error adding inventory item:', error);
     res.status(500).json({ error: 'Error adding inventory item' });
+  }
+});
+
+
+app.get('/userinfo', async (req, res) => {
+  try {
+    // Extract the user ID from request headers (assuming you're sending the user ID in headers)
+    const userId = req.headers.userid;
+
+    // Find the user by ID in the database
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Return user information
+    res.json({ user });
+  } catch (error) {
+    console.error("Error fetching user info:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 
